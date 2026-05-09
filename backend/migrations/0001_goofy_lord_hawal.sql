@@ -1,0 +1,8 @@
+CREATE TABLE `taken` (
+	`ID` bigint AUTO_INCREMENT NOT NULL,
+	`TYPE` varchar(100) NOT NULL,
+	`DUURTIJD` int,
+	`OMSCHRIJVING` varchar(255),
+	`STATUS` varchar(100) DEFAULT 'OPEN',
+	CONSTRAINT `taken_ID` PRIMARY KEY(`ID`)
+);

@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --primary: #e1251b;
+  --primary-hover: #c81f16;
+}
+
+@layer base {
+  body {
+    @apply bg-[#f5f6f7] dark:bg-[#0f1419] text-gray-800 dark:text-gray-100;
+    min-height: 100vh;
+  }
+
+  h1 {
+    @apply text-4xl mb-4 font-semibold tracking-tight;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    color-scheme: light;
+  }
+
+  .dark input,
+  .dark select,
+  .dark textarea,
+  .dark button {
+    color-scheme: dark;
+  }
+}
+
+@layer components {
+  .surface {
+    @apply bg-white dark:bg-[#11161c]
+           border border-gray-200 dark:border-gray-800;
+  }
+
+  .surface-soft {
+    @apply bg-gray-50 dark:bg-white/5
+           border border-gray-200 dark:border-white/10;
+  }
+
+  .divider {
+    @apply divide-y divide-gray-200 dark:divide-white/10;
+  }
+
+  .text-muted {
+    @apply text-gray-500 dark:text-gray-400;
+  }
+}

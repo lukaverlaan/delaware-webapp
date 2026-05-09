@@ -1,0 +1,653 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "id": "34af8238-d7f2-4b69-b848-b242806317a5",
+  "prevId": "b3ee52aa-32c8-489a-8626-19dfafb3e51f",
+  "tables": {
+    "gebruikers": {
+      "name": "gebruikers",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "EERSTELOGIN": {
+          "name": "EERSTELOGIN",
+          "type": "tinyint",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "EMAIL": {
+          "name": "EMAIL",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GEBOORTEDATUM": {
+          "name": "GEBOORTEDATUM",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "GSM": {
+          "name": "GSM",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NAAM": {
+          "name": "NAAM",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PERSONEELSNUMMER": {
+          "name": "PERSONEELSNUMMER",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "ROL": {
+          "name": "ROL",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "STATUS": {
+          "name": "STATUS",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "VOORNAAM": {
+          "name": "VOORNAAM",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "WACHTWOORD": {
+          "name": "WACHTWOORD",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "HUISNR": {
+          "name": "HUISNR",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "POSTBUS": {
+          "name": "POSTBUS",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "POSTCODE": {
+          "name": "POSTCODE",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "STAD": {
+          "name": "STAD",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "STRAAT": {
+          "name": "STRAAT",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "gebruikers_ID": {
+          "name": "gebruikers_ID",
+          "columns": [
+            "ID"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "EMAIL": {
+          "name": "EMAIL",
+          "columns": [
+            "EMAIL"
+          ]
+        },
+        "PERSONEELSNUMMER": {
+          "name": "PERSONEELSNUMMER",
+          "columns": [
+            "PERSONEELSNUMMER"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "machine_werknemers": {
+      "name": "machine_werknemers",
+      "columns": {
+        "gebruiker_id": {
+          "name": "gebruiker_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "machine_id": {
+          "name": "machine_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "machine_werknemers_gebruiker_id_gebruikers_ID_fk": {
+          "name": "machine_werknemers_gebruiker_id_gebruikers_ID_fk",
+          "tableFrom": "machine_werknemers",
+          "tableTo": "gebruikers",
+          "columnsFrom": [
+            "gebruiker_id"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        },
+        "machine_werknemers_machine_id_machines_ID_fk": {
+          "name": "machine_werknemers_machine_id_machines_ID_fk",
+          "tableFrom": "machine_werknemers",
+          "tableTo": "machines",
+          "columnsFrom": [
+            "machine_id"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "compositePrimaryKeys": {
+        "machine_werknemers_gebruiker_id_machine_id_pk": {
+          "name": "machine_werknemers_gebruiker_id_machine_id_pk",
+          "columns": [
+            "gebruiker_id",
+            "machine_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "machines": {
+      "name": "machines",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "CODE": {
+          "name": "CODE",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "LAATSTEONDERHOUD": {
+          "name": "LAATSTEONDERHOUD",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "LOCATIE": {
+          "name": "LOCATIE",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PRODUCTIESTATUS": {
+          "name": "PRODUCTIESTATUS",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "PRODUCTINFO": {
+          "name": "PRODUCTINFO",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "STATUS": {
+          "name": "STATUS",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "UPTIME": {
+          "name": "UPTIME",
+          "type": "time",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SITE_ID": {
+          "name": "SITE_ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "machines_SITE_ID_sites_ID_fk": {
+          "name": "machines_SITE_ID_sites_ID_fk",
+          "tableFrom": "machines",
+          "tableTo": "sites",
+          "columnsFrom": [
+            "SITE_ID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "compositePrimaryKeys": {
+        "machines_ID": {
+          "name": "machines_ID",
+          "columns": [
+            "ID"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "notificaties": {
+      "name": "notificaties",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "CODE": {
+          "name": "CODE",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "DATUM": {
+          "name": "DATUM",
+          "type": "datetime",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "INHOUD": {
+          "name": "INHOUD",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "STATUS": {
+          "name": "STATUS",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "TYPE": {
+          "name": "TYPE",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "gebruiker_id": {
+          "name": "gebruiker_id",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        }
+      },
+      "indexes": {
+        "idx_notificatie_gebruiker": {
+          "name": "idx_notificatie_gebruiker",
+          "columns": [
+            "gebruiker_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "notificaties_gebruiker_id_gebruikers_ID_fk": {
+          "name": "notificaties_gebruiker_id_gebruikers_ID_fk",
+          "tableFrom": "notificaties",
+          "tableTo": "gebruikers",
+          "columnsFrom": [
+            "gebruiker_id"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {
+        "notificaties_ID": {
+          "name": "notificaties_ID",
+          "columns": [
+            "ID"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "sites": {
+      "name": "sites",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "CAPACITEIT": {
+          "name": "CAPACITEIT",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "LOCATIE": {
+          "name": "LOCATIE",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "NAAM": {
+          "name": "NAAM",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "operationele_status": {
+          "name": "operationele_status",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "productie_status": {
+          "name": "productie_status",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "sites_ID": {
+          "name": "sites_ID",
+          "columns": [
+            "ID"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "NAAM": {
+          "name": "NAAM",
+          "columns": [
+            "NAAM"
+          ]
+        }
+      },
+      "checkConstraint": {}
+    },
+    "taken": {
+      "name": "taken",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "TYPE": {
+          "name": "TYPE",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DUURTIJD": {
+          "name": "DUURTIJD",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "OMSCHRIJVING": {
+          "name": "OMSCHRIJVING",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "STATUS": {
+          "name": "STATUS",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "'OPEN'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "taken_ID": {
+          "name": "taken_ID",
+          "columns": [
+            "ID"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "teams": {
+      "name": "teams",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "CODE": {
+          "name": "CODE",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "SITE_ID": {
+          "name": "SITE_ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "VERANTWOORDELIJKE_ID": {
+          "name": "VERANTWOORDELIJKE_ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "teams_SITE_ID_sites_ID_fk": {
+          "name": "teams_SITE_ID_sites_ID_fk",
+          "tableFrom": "teams",
+          "tableTo": "sites",
+          "columnsFrom": [
+            "SITE_ID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        },
+        "teams_VERANTWOORDELIJKE_ID_gebruikers_ID_fk": {
+          "name": "teams_VERANTWOORDELIJKE_ID_gebruikers_ID_fk",
+          "tableFrom": "teams",
+          "tableTo": "gebruikers",
+          "columnsFrom": [
+            "VERANTWOORDELIJKE_ID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "compositePrimaryKeys": {
+        "teams_ID": {
+          "name": "teams_ID",
+          "columns": [
+            "ID"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    },
+    "teams_gebruikers": {
+      "name": "teams_gebruikers",
+      "columns": {
+        "Team_ID": {
+          "name": "Team_ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "medewerkers_ID": {
+          "name": "medewerkers_ID",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "teams_gebruikers_Team_ID_teams_ID_fk": {
+          "name": "teams_gebruikers_Team_ID_teams_ID_fk",
+          "tableFrom": "teams_gebruikers",
+          "tableTo": "teams",
+          "columnsFrom": [
+            "Team_ID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        },
+        "teams_gebruikers_medewerkers_ID_gebruikers_ID_fk": {
+          "name": "teams_gebruikers_medewerkers_ID_gebruikers_ID_fk",
+          "tableFrom": "teams_gebruikers",
+          "tableTo": "gebruikers",
+          "columnsFrom": [
+            "medewerkers_ID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "restrict",
+          "onUpdate": "restrict"
+        }
+      },
+      "compositePrimaryKeys": {
+        "teams_gebruikers_Team_ID_medewerkers_ID_pk": {
+          "name": "teams_gebruikers_Team_ID_medewerkers_ID_pk",
+          "columns": [
+            "Team_ID",
+            "medewerkers_ID"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    }
+  },
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}
